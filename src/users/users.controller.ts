@@ -10,7 +10,7 @@ export class UsersController {
     constructor(private service: UsersService) { }
 
     @Get()
-    getAll(): Promise<User[]>{
+    getAll(): Promise<User[]> {
         return this.service.getUsers();
     }
 
@@ -27,11 +27,11 @@ export class UsersController {
     @Put(':id')
     update(@Body() user: User, @Param() params): Promise<User> {
         user.id = params.id;
-         return this.service.updateUser(params.id,user);
+        return this.service.updateUser(params.id, user);
     }
 
     @Delete(':id')
-    deleteUser(@Param() params): Promise<void> {
-       return  this.service.deleteUser(params.id);
+    delete(@Param() params): Promise<void> {
+        return this.service.deleteUser(params.id);
     }
 }
