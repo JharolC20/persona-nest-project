@@ -64,10 +64,13 @@ describe('UsersController', () => {
   describe('Testeando update', () => {
 
     it('Deberia crear una persona', async () => {
+      const id=1;
+      const params ={id:1};
       const actualizar = { nombre: 'luis', apellido: 'Suarez', edad: 26 } as User;
+      //const nuevo = {id:1, nombre: 'luis', apellido: 'Suarez', edad: 26 } as User;
       repositoryMock.update.mockReturnValue(actualizar);
       repositoryMock.findOne.mockReturnValue(actualizar);
-      var respuesta = await usersController.update(actualizar, actualizar);
+      var respuesta = await usersController.update(actualizar, params);
       //console.log(JSON.stringify(respuesta));
       expect(respuesta).toBe(actualizar);
       //expect(await usersController.update(1,actualizar)).toBe(actualizar);
