@@ -27,9 +27,6 @@ describe('UsersController', () => {
     repositoryMock = moduleRef.get(getRepositoryToken(User));
   });
 
-  // it('should be defined', () => {
-  //   expect(controller).toBeDefined();
-  // });
   describe('Testeando getAll', () => {
     it('Deberia retornar una arreglo vacio', async () => {
       const result = [];
@@ -58,22 +55,19 @@ describe('UsersController', () => {
     it('Deberia Eliminar una persona', async () => {
       const id = 1;
       await usersController.delete(id);
+      
     });
   });
 
   describe('Testeando update', () => {
 
     it('Deberia crear una persona', async () => {
-      const id=1;
-      const params ={id:1};
+      const params = { id: 1 };
       const actualizar = { nombre: 'luis', apellido: 'Suarez', edad: 26 } as User;
-      //const nuevo = {id:1, nombre: 'luis', apellido: 'Suarez', edad: 26 } as User;
       repositoryMock.update.mockReturnValue(actualizar);
       repositoryMock.findOne.mockReturnValue(actualizar);
       var respuesta = await usersController.update(actualizar, params);
-      //console.log(JSON.stringify(respuesta));
       expect(respuesta).toBe(actualizar);
-      //expect(await usersController.update(1,actualizar)).toBe(actualizar);
     });
   });
 
