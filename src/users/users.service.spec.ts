@@ -61,7 +61,6 @@ describe('UsersService', () => {
       repositoryMock.update.mockReturnValue(actualizar);
       repositoryMock.findOne.mockReturnValue(actualizar);
       var respuesta = await service.updateUser(1, actualizar);
-      //console.log(JSON.stringify(respuesta));
       expect(respuesta).toBe(actualizar);
     });
   });
