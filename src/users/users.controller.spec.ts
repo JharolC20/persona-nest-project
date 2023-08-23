@@ -7,6 +7,7 @@ import { User } from './user.entity';
 import { repositoryMockFactory } from '../utils/test/repositoryMock';
 import { MockType } from 'src/utils/test/mockType';
 import { Repository } from 'typeorm';
+import { PageOptions } from './page.options';
 
 describe('UsersController', () => {
   let usersController: UsersController;
@@ -30,14 +31,16 @@ describe('UsersController', () => {
   describe('Testeando getAll', () => {
     it('Deberia retornar una arreglo vacio', async () => {
       const result = [];
+      const pagOpt = { limit: 1, page: 10 };
       repositoryMock.find.mockReturnValue(result);
-      expect(await usersController.getAll()).toBe(result);
+      expect(await usersController.getAll(pagOpt)).toBe(result);
     });
 
     it('Deberia retornar un arreglo', async () => {
+      const pagOpt = { limit: 1, page: 10 };
       const result = [{ nombre: 'Pedro', apellido: 'Ruizs', edad: 12 }];
       repositoryMock.find.mockReturnValue(result);
-      expect(await usersController.getAll()).toBe(result);
+      expect(await usersController.getAll(pagOpt)).toBe(result);
     });
   });
 
@@ -55,6 +58,7 @@ describe('UsersController', () => {
     it('Deberia Eliminar una persona', async () => {
       const id = 1;
       await usersController.delete(id);
+      expect(200);
       
     });
   });

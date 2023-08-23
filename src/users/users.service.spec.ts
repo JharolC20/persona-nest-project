@@ -34,15 +34,17 @@ describe('UsersService', () => {
 
   describe('Testeando getUsers', () => {
     it('Deberia retornar una arreglo vacio', async () => {
+      const pagOpt = { page: 1, limit: 10 };
       const result = [];
       repositoryMock.find.mockReturnValue(result);
-      expect(await service.getUsers()).toBe(result);
+      expect(await service.getUsers(pagOpt)).toBe(result);
     });
 
     it('Deberia retornar una persona', async () => {
+      const pagOpt = { page: 1, limit: 10 };
       const result = [{ nombre: 'harol', apellido: 'Casti', edad: 12 }];
       repositoryMock.find.mockReturnValue(result);
-      expect(await service.getUsers()).toBe(result);
+      expect(await service.getUsers(pagOpt)).toBe(result);
     });
   });
   describe('Testeando Createuser', () => {
@@ -70,6 +72,7 @@ describe('UsersService', () => {
     it('Deberia Eliminar una persona', async () => {
       const id = 1;
       await service.deleteUser(id);
+      expect(200);
     });
   })
 

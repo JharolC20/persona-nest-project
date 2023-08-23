@@ -1,5 +1,5 @@
 
-import { Controller, Post, Body, Get, Put, Delete, Param,Query } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Delete, Param, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
 import { PageOptions } from './page.options';
@@ -14,20 +14,16 @@ export class UsersController {
 
     //url=/users
     @Get()
-    getAll(@Query() pageOptions:PageOptions): Promise<User[]> {
+    getAll(@Query() pageOptions: PageOptions): Promise<User[]> {
         //console.log('hola',JSON.stringify(pageOptions));
         return this.service.getUsers(pageOptions);
         //return this.service.findAll(take, skip);
     }
     //url = /users/id = patth variable
-     @Get(':id')
-     get(@Param() Param): Promise<User> {
-         return this.service.getUser(Param.id);
-     }
-    // @Get()
-    //     async get(@Query('id') id: number): Promise<User> {
-    //         return this.service.getUser(id);
-    // }
+    @Get(':id')
+    get(@Param() Param): Promise<User> {
+        return this.service.getUser(Param.id);
+    }
 
     @Post()
     create(@Body() user: User): Promise<User> {

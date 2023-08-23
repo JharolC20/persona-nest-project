@@ -11,7 +11,7 @@ export class UsersService {
 
     constructor(@InjectRepository(User) private usersRepository: Repository<User>) { }
 
-    getUsers(options:PageOptions): Promise<User[]> {
+    getUsers(options: PageOptions): Promise<User[]> {
         const offset = options.page * options.limit;
         return this.usersRepository.find(
             {
